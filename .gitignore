@@ -5,5 +5,10 @@ cabal-dev
 *.chi
 *.chs.h
 .virthualenv
+<<<<<<< HEAD
 .metadata
 .dist-buildwrapper
+=======
+.dist-buildwrapper
+.metadata
+>>>>>>> 35a6630164ce98d434e700985723d00e02321d5f

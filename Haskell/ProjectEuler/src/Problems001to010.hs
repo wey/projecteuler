@@ -51,13 +51,19 @@ problem004 = show . maximum $ palindromes
 -- 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 -- What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 problem005 :: String
-problem005 = case find isDivisibleBy1to20 candidates of
-        Nothing -> error "WTF ?!?"
-        Just result -> show result
+problem005 = show . product . join $ allPrimeFactors
     where
-        isDivisibleBy1to20 c = all (isDivisibleBy c) divisors
-        candidates = [2520..]
-        divisors = reverse [1..20]
+        join factors = [] :: [Integer]
+        allPrimeFactors = map primeFactors [11..20]
+        
+
+--    case find isDivisibleBy1to20 candidates of
+--        Nothing -> error "WTF ?!?"
+--        Just result -> show result
+--    where
+--        isDivisibleBy1to20 c = all (isDivisibleBy c) divisors
+--        candidates = [2520..]
+--        divisors = reverse [1..20]
 
 
 
@@ -129,11 +135,13 @@ problem008 = show . maximum $ products
 -- There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 -- Find the product abc. 
 problem009 :: String
-problem009 = ""
+problem009 = show . head $ [a*b*c | a<-[1..333], b<-[1..500], let c = 1000 - a - b, a*a + b*b == c*c]
 
 
-
-
+-- The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+-- Find the sum of all the primes below two million.
+problem010 :: String
+problem010 = show . sum $ primesUpTo 2000000
 
 
 
