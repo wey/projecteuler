@@ -7,6 +7,8 @@ author:         Mathias Weyel
 executable ProjectEuler
   hs-source-dirs:  src
   main-is:         Main.hs
-  build-depends:   base >= 4
+  build-depends:   
+                   base >= 4,
+                   containers
   ghc-options:     -Wall
 
