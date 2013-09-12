@@ -3,6 +3,10 @@ module Util where
 import Data.List as List
 import Data.Map as Map
 
+
+triangleNumbers :: [Integer]
+triangleNumbers = scanl (+) 1 [2..]
+
 fibonacci :: [Integer]
 fibonacci = 0 : scanl (+) 1 fibonacci
 
@@ -29,3 +33,9 @@ primes numbers = sieve numbers Map.empty
                 
 isDivisibleBy :: Integer -> Integer -> Bool
 isDivisibleBy number by = number `mod` by == 0 
+
+divisors :: Integer -> Integer
+divisors n = sum summands
+    where
+        summands = List.map (\x -> toInteger (x+1)) primeFactorExponents
+        primeFactorExponents = List.map length $ group . primeFactors $ n
