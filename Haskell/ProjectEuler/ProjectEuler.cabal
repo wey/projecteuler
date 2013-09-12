@@ -11,4 +11,6 @@ executable ProjectEuler
                    base >= 4,
                    containers
   ghc-options:     -Wall
+                   -fno-warn-type-defaults
+  other-modules:   Problems011to020
 

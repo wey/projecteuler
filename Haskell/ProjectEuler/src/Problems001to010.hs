@@ -48,10 +48,7 @@ problem004 = show . maximum $ palindromes
 -- 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 -- What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 problem005 :: String
-problem005 = show . product . join $ allPrimeFactors
-    where
-        join factors = [] :: [Integer]
-        allPrimeFactors = map primeFactors [11..20]
+problem005 = show $ foldl lcm 1 [11..20] 
         
 
 --    case find isDivisibleBy1to20 candidates of
