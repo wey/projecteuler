@@ -35,7 +35,12 @@ isDivisibleBy :: Integer -> Integer -> Bool
 isDivisibleBy number by = number `mod` by == 0 
 
 divisors :: Integer -> Integer
-divisors n = sum summands
+divisors n = product summands
     where
         summands = List.map (\x -> toInteger (x+1)) primeFactorExponents
         primeFactorExponents = List.map length $ group . primeFactors $ n
+        
+noverk :: Integer -> Integer -> Integer
+noverk _ 0 = 1
+noverk 0 _ = 0
+noverk n k = noverk (n-1) (k-1) * n `div` k 

@@ -4,4 +4,4 @@ module Main where
 import Problems011to020
 
 main::IO()
-main = putStrLn problem012
+main = putStrLn problem016
