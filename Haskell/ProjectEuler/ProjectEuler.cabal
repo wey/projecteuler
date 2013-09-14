@@ -9,8 +9,11 @@ executable ProjectEuler
   main-is:         Main.hs
   build-depends:   
                    base >= 4,
-                   containers
+                   containers,
+                   time
   ghc-options:     -Wall
                    -fno-warn-type-defaults
-  other-modules:   Problems011to020
+  other-modules:   
+                   Problems011to020,
+                   Problems021to030
 

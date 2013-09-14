@@ -3,6 +3,8 @@ module Problems011to020 where
 import Data.Char
 import Data.Function
 import Data.List
+import Data.Time
+import Data.Time.Calendar.WeekDate
 
 import Util
 
@@ -448,7 +450,11 @@ data Tree = Branch Int Tree Tree | Leaf Int
 -- 
 -- How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 problem019 :: String
-problem019 = ""
+problem019 = show . length $ filter isMonday firstMonthDays
+    where
+        isMonday date = check $ toWeekDate date
+            where check (_, _, d) = d == 7
+        firstMonthDays = [fromGregorian y m 1 | y <- [1901..2000], m <- [1..12]]
 
 
 -- n! means n * (n - 1) * ... * 3 * 2 * 1
@@ -456,4 +462,15 @@ problem019 = ""
 -- and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
 -- Find the sum of the digits in the number 100!
 problem020 :: String
-problem020 = ""
+problem020 = show . sum . digits $ factorial
+    where
+        factorial = product [1..100]
+        digits number = map digitToInt $ show number
+        
+
+
+
+
+
+
+

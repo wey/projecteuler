@@ -51,17 +51,6 @@ problem005 :: String
 problem005 = show $ foldl lcm 1 [11..20] 
         
 
---    case find isDivisibleBy1to20 candidates of
---        Nothing -> error "WTF ?!?"
---        Just result -> show result
---    where
---        isDivisibleBy1to20 c = all (isDivisibleBy c) divisors
---        candidates = [2520..]
---        divisors = reverse [1..20]
-
-
-
-
 -- The sum of the squares of the first ten natural numbers is,
 -- 1^2 + 2^2 + ... + 10^2 = 385
 -- The square of the sum of the first ten natural numbers is,
