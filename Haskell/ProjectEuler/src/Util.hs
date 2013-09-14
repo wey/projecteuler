@@ -44,3 +44,25 @@ noverk :: Integer -> Integer -> Integer
 noverk _ 0 = 1
 noverk 0 _ = 0
 noverk n k = noverk (n-1) (k-1) * n `div` k 
+
+readCommaSeparatedValues :: String -> IO [Int]
+readCommaSeparatedValues path = do
+    contents <- readFile path
+    
+    return []
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
