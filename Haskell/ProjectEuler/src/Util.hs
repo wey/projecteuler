@@ -30,27 +30,27 @@ primes numbers = sieve numbers Map.empty
                 Just facts -> sieve xs (List.foldl reinsert (Map.delete x table) facts)
             where
                 reinsert t prime = Map.insertWith (++) (x+prime) [prime] t
+
+isPrime :: Integer -> Bool
+isPrime n = divisorCount n == 2
                 
 isDivisibleBy :: Integer -> Integer -> Bool
 isDivisibleBy number by = number `mod` by == 0 
 
-divisors :: Integer -> Integer
-divisors n = product summands
+divisorCount :: Integer -> Integer
+divisorCount n = product summands
     where
         summands = List.map (\x -> toInteger (x+1)) primeFactorExponents
         primeFactorExponents = List.map length $ group . primeFactors $ n
+        
+divisors :: Integer -> [Integer]
+divisors n = 1 : n : List.filter (isDivisibleBy n) [2..(n `div` 2)]
         
 noverk :: Integer -> Integer -> Integer
 noverk _ 0 = 1
 noverk 0 _ = 0
 noverk n k = noverk (n-1) (k-1) * n `div` k 
 
-readCommaSeparatedValues :: String -> IO [Int]
-readCommaSeparatedValues path = do
-    contents <- readFile path
-    
-    return []
-    
 
 
 
