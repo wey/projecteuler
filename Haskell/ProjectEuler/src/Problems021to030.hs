@@ -12,19 +12,20 @@ import Util
 -- Evaluate the sum of all the amicable numbers under 10000.
 problem021 :: String
 problem021 = show . findAmicableSum . filterPrimes . createPairs $ [1..10000]
+
+createPairs = map checkNumber
+properDivisors n = delete n (divisors n)
+checkNumber n = (n, sum . properDivisors $ n) 
+filterPrimes = filter (\(_,y) -> y > 1)
+findAmicableSum pairs = findAmicableSum' pairs 0
     where
-        createPairs = map checkNumber
-        properDivisors n = delete n (divisors n)
-        checkNumber n = (n, sum . properDivisors $ n) 
-        filterPrimes = filter (\(_,y) -> y > 1)
-        findAmicableSum pairs = findAmicableSum' pairs 0
-            where
-                findAmicableSum' p numberSum = case p of
-                        [] -> numberSum
-                        x@(n, divSumN):xs -> findAmicableSum' (removeBoth x xs) newSum
-                            where newSum = if findOther x p then numberSum + n + divSumN else numberSum
-                findOther (x,y) = any (\(a,b) -> (a,b) == (y,x))   
-                removeBoth (x,y) = filter (\e -> e /= (x,y) && e /= (y,x))            
+        findAmicableSum' p numberSum = case p of
+                [] -> numberSum
+                x@(n, divSumN):xs -> if findOther x p 
+                    then findAmicableSum' (removeBoth x xs) (numberSum + n + divSumN)
+                    else findAmicableSum' (removeBoth x xs) numberSum
+        findOther (x,y) = any (\(a,b) -> (a,b) == (y,x))   
+        removeBoth (x,y) = filter (\e -> e /= (x,y) && e /= (y,x))            
 
 -- Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, 
 -- begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, 
